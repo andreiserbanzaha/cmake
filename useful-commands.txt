@@ -1,0 +1,49 @@
+# CMake params that are cool :p
+
+# export the compilation commands used by your generator (make, ninja..)
+CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON
+
+# Install wherever you want
+CMAKE_INSTALL_PREFIX:PATH=<your_path_here>
+
+# Use clang tidy as a 'shadow' of each compile command
+"-DCMAKE_CXX_CLANG_TIDY=/usr/bin/clang-tidy-3.9;-checks=*"
+
+# Same with cppcheck
+"-DCMAKE_CXX_CPPCHECK=/usr/bin/cppcheck;--std=c++11"
+
+# See a trace of what cmake is doing
+cmake --trace
+
+# Use cmake to also build
+cmake --build . --target all
+
+# Select build and source dirs
+cmake -S<src_path_where_main_cmake_lists_is> -B<build_path>
+
+# Select a compiler
+-DCMAKE_CXX_COMPILER=clang++
+-DCMAKE_C_COMPILER=clang
+
+# Make/Ninja see all targets
+make help
+ninja help
+
+# CTest run all tests added with add_test(...)
+ctest # OR
+make -j test/all && make test
+
+# If packaging is enabled (CPack)
+make package
+
+# See verbose output from your generator
+-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON
+
+
+
+######## other ###########
+-DCMAKE_INSTALL_PREFIX
+-DCMAKE_CXX_COMPILER:STRING=clang++
+-DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON
+-DCMAKE_VERBOSE_MAKEFILE=ON
+
